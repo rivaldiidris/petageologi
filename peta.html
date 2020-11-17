@@ -1,0 +1,3082 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
+        <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+
+
+        <style>
+            html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin:  0;
+        }
+               
+        </style>
+    <title> Peta Geologi Indonesia</title>
+    </head>
+    <body>
+        <div id="map">
+    	</div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+        <script>		
+
+
+
+     var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:5
+        }).fitBounds([[-16.169060139234798,93.63735407828618],[16.348497040312772,141.22519866529012]]);
+        map.addControl(new L.Control.Fullscreen());
+        var layer_GoogleSatellite_0 = L.tileLayer('https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.google.at/permissions/geoguidelines/attr-guide.html">Map data ©2015 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 21
+        });
+
+        var hash = new L.Hash(map);
+       map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        layer_GoogleSatellite_0;
+        map.addLayer(layer_GoogleSatellite_0);
+        
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        setBounds();
+
+    //aceh
+    L.polygon([
+    [5, 95],
+    [5, 96.15],
+    [6, 96.15],
+    [6, 95]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Banda Aceh<br>Scale: 1:250.000<br><br><a href="assets/peta/sumatra/pontianak.jpg" target="_blank">Download Map</a><br><br><img src="assets/peta/sumatra/aceh.tif" width=200x height=100px>', {maxWidth : "auto"})
+    
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //lhoksumawe
+      L.polygon([
+    [5, 96.15],
+    [5, 97.45],
+    [5.45, 97.45],
+    [5.45, 96.15]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Lhoksumawe<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //calang
+      L.polygon([
+    [4, 95],
+    [4, 96],
+    [5, 96],
+    [5, 95]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Calang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //takengon
+      L.polygon([
+    [4, 96],
+    [4, 97.30],
+    [5, 97.30],
+    [5, 96]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Takengon<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //langsa
+      L.polygon([
+    [4, 97.30],
+    [4, 98.45],
+    [5, 98.45],
+    [5, 97.30]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Langsa<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //tapaktuan
+       L.polygon([
+    [3, 96],
+    [3, 97.30],
+    [4, 97.30],
+    [4, 96]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Tapaktuan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //medan
+       L.polygon([
+    [3, 97.30],
+    [3, 99],
+    [4, 99],
+    [4, 97.30]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Medan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //tebing tinggi
+       L.polygon([
+    [3, 99],
+    [3, 100],
+    [4, 100],
+    [4, 99]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Tebing Tinggi<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //sinabang
+       L.polygon([
+    [2, 95.40],
+    [2, 97],
+    [3, 97],
+    [3, 95.40]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Sinabang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //sidikalang
+       L.polygon([
+    [2, 97],
+    [2, 99],
+    [3, 99],
+    [3, 97]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Sidikalang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //pematang siantar
+       L.polygon([
+    [2, 99],
+    [2, 100.30],
+    [3, 100.30],
+    [3, 99]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Pematang Siantar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //nias
+       L.polygon([
+    [0.45, 97],
+    [0.45, 98],
+    [1.60, 98],
+    [1.60, 97]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Nias<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //padang sidampoang
+       L.polygon([
+    [1, 98.30],
+    [1, 100.30],
+    [2, 100.30],
+    [2, 98.30]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Padang Sidempuan & Sibolga<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //dumai bagansiapiapi
+       L.polygon([
+    [1, 100.30],
+    [1, 102],
+    [2.40, 102],
+    [2.40, 100.30]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Dumai & Bagiansiapiapi<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //bengkalis
+       L.polygon([
+    [1, 102],
+    [1, 103],
+    [1.60, 103],
+    [1.60, 102]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Bengkalis<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //lubuk sikaping
+       L.polygon([
+    [0, 99],
+    [0, 100.30],
+    [1, 100.30],
+    [1, 99]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Lubuk Sikaping<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //pekanbaru
+       L.polygon([
+    [0, 100.30],
+    [0, 102],
+    [1, 102],
+    [1, 100.30]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Pekanbaru<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //tanjung pinang
+       L.polygon([
+    [0, 103.30],
+    [0, 105],
+    [1.30, 105],
+    [1.30, 103.30]
+    ]).setStyle({color: 'blue'}).addTo(map).bindPopup('Map id: Tanjung Pinang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      // Siak Sri Inderapura
+       L.polygon([
+    [0, 102],
+    [0, 104],
+    [1, 104],
+    [1, 102]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Siak Sri Inderapura<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //telo
+       L.polygon([
+    [-0.75, 97.30],
+    [-0.75, 99],
+    [0.25, 99],
+    [0.25, 97.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Telo<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+        //padang
+       L.polygon([
+    [-1, 99.05],
+    [-1, 100.30],
+    [0, 100.30],
+    [0, 99.05]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Padang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //solok
+       L.polygon([
+    [-1, 100.30],
+    [-1, 102],
+    [0, 102],
+    [0, 100.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Solok<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+         //rengat
+       L.polygon([
+    [-1, 102],
+    [-1, 103.30],
+    [0, 103.30],
+    [0, 102]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Rengat<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //dabo
+       L.polygon([
+    [-1, 103.30],
+    [-1, 105],
+    [0, 105],
+    [0, 103.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Dabo<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //suberut
+       L.polygon([
+    [-2, 98.30],
+    [-2, 99.45],
+    [-0.75, 99.45],
+    [-0.75, 98.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Suberut<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //painan
+       L.polygon([
+    [-2, 100],
+    [-2, 102],
+    [-1, 102],
+    [-1, 100]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Painan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //muarabungo
+       L.polygon([
+    [-2, 102],
+    [-2, 103.30],
+    [-1, 103.30],
+    [-1, 102]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Muarabungo<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //jambi
+       L.polygon([
+    [-2, 103.30],
+    [-2, 105],
+    [-1, 105],
+    [-1, 103.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Jambi<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //bangka utara
+       L.polygon([
+    [-2.20, 105],
+    [-2.20, 106.30],
+    [-1.20, 106.30],
+    [-1.20, 105]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bangka Utara<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //pagai sipora
+       L.polygon([
+    [-3.45, 99.30],
+    [-3.45, 100.60],
+    [-1.90, 100.60],
+    [-1.90, 99.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pagai Sipora<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //sungai penuh
+       L.polygon([
+    [-4, 100.60],
+    [-4, 102],
+    [-2, 102],
+    [-2, 100.60]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sungai Penuh<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //bangko sarolangun
+       L.polygon([
+    [-3, 102],
+    [-3, 103.30],
+    [-2, 103.30],
+    [-2, 102]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bangko Sarolangun<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //palembang
+       L.polygon([
+    [-3, 103.30],
+    [-3, 105],
+    [-2, 105],
+    [-2, 103.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Palembang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //bangka selatan
+       L.polygon([
+    [-3.30, 105],
+    [-3.30, 107],
+    [-2.20, 107],
+    [-2.20, 105]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bangka Selatan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //belitung
+       L.polygon([
+    [-3.40, 107],
+    [-3.40, 108.40],
+    [-2.30, 108.40],
+    [-2.30, 107]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Belitung<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //bengkulu
+       L.polygon([
+    [-4, 102],
+    [-4, 103.30],
+    [-3, 103.30],
+    [-3, 102]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bengkulu<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //lahat
+       L.polygon([
+    [-4, 103.30],
+    [-4, 105],
+    [-3, 105],
+    [-3, 103.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Lahat<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+       //tulung selapan
+       L.polygon([
+    [-4, 105],
+    [-4, 106.30],
+    [-3, 106.30],
+    [-3, 105]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tulung Selapan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //manna enggano
+       L.polygon([
+    [-5.60, 102],
+    [-5.60, 103.30],
+    [-4, 103.30],
+    [-4, 102]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Manna Enggano<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //baturaja
+       L.polygon([
+    [-5, 103.30],
+    [-5, 105],
+    [-4, 105],
+    [-4, 103.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Baturaja<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //menggala
+       L.polygon([
+    [-5, 105],
+    [-5, 106.30],
+    [-4, 106.30],
+    [-4, 105]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Menggala<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //kota agung
+       L.polygon([
+    [-6, 103.30],
+    [-6, 105],
+    [-5, 105],
+    [-5, 103.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kota Agung<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+      //tanjung karang
+       L.polygon([
+    [-5.90, 105],
+    [-5.90, 105.90],
+    [-5, 105.90],
+    [-5, 105]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanjung Karang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+
+      //sulawesi
+      //talaud
+       L.polygon([
+    [3.30, 126.30],
+    [3.30, 127.30],
+    [5, 127.30],
+    [5, 126.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Talaud<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sangihe siau
+       L.polygon([
+    [2.30, 125],
+    [2.30, 126],
+    [4, 126],
+    [4, 125]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sangihe Siau<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //manado
+       L.polygon([
+    [0.40, 124.45],
+    [0.40, 125.33],
+    [2, 125.33],
+    [2, 124.45]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Manado<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kotamobagu
+       L.polygon([
+    [0.15, 123],
+    [0.15, 124.45],
+    [1.25, 124.45],
+    [1.25, 123]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kotamobagu<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tilamuta
+       L.polygon([
+    [0.15, 121.50],
+    [0.15, 123],
+    [1.20, 123],
+    [1.20, 121.50]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tilamuta<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //toli toli
+       L.polygon([
+    [0, 119.45],
+    [0, 121.50],
+    [1.45, 121.50],
+    [1.45, 119.45]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Toli Toli<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+       //palu-tinjau
+       L.polygon([
+    [-1, 119.22],
+    [-1, 120.45],
+    [0, 120.45],
+    [0, 119.22]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Palu<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //luwuk
+       L.polygon([
+    [-1, 121.22],
+    [-1, 123.60],
+    [0, 123.60],
+    [0, 121.22]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Luwuk<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pasangkayu
+       L.polygon([
+    [-2, 118.30],
+    [-2, 120],
+    [-1, 120],
+    [-1, 118.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pasangkayu<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //poso
+       L.polygon([
+    [-2, 120],
+    [-2, 121.30],
+    [-1, 121.30],
+    [-1, 120]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Poso<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //batui
+       L.polygon([
+    [-2, 121.30],
+    [-2, 123],
+    [-1, 123],
+    [-1, 121.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Batui<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //mamuju
+       L.polygon([
+    [-3, 118.30],
+    [-3, 120],
+    [-2, 120],
+    [-2, 118.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Mamuju<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //mamili
+       L.polygon([
+    [-3, 120],
+    [-3, 121.30],
+    [-2, 121.30],
+    [-2, 120]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Mamili<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bungku
+       L.polygon([
+    [-3, 121.30],
+    [-3, 123],
+    [-2, 123],
+    [-2, 121.30]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bungku<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //majene palopo
+       L.polygon([
+    [-4, 118.70],
+    [-4, 120.60],
+    [-3, 120.60],
+    [-3, 118.70]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Majene Palopo<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //lasusa kendari
+       L.polygon([
+    [-4, 120.75],
+    [-4, 123.25],
+    [-3, 123.25],
+    [-3, 120.75]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Lasusa - Kendari<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pangkajene watompo
+       L.polygon([
+    [-5, 119.15],
+    [-5, 120.45],
+    [-4, 120.45],
+    [-4, 119.15]
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pangkajene & Watompo<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kolaka
+       L.polygon([
+    [-5.60, 121.15],
+    [-5.60, 123],
+    [-4, 123],
+    [-4, 121.15],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kolaka<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+       //ujung pandang
+       L.polygon([
+    [-6.60, 119],
+    [-6.60, 120.65],
+    [-5, 120.65],
+    [-5, 119],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ujung Pandang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //buton
+       L.polygon([
+    [-5.75, 122],
+    [-5.75, 123.30],
+    [-4.15, 123.30],
+    [-4.15, 122],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Buton<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tukang besi
+       L.polygon([
+    [-6.07, 123],
+    [-6.07, 124.30],
+    [-5.07, 124.30],
+    [-5.07, 123],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tukang Besi<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bonerate
+       L.polygon([
+    [-7.60, 120.15],
+    [-7.60, 122],
+    [-6.35, 122],
+    [-6.35, 120.15],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bonerate<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ntt  
+      //bali
+       L.polygon([
+    [-8.90, 114.40],
+    [-8.90, 115.80],
+    [-8, 115.80],
+    [-8, 114.40],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bali<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+       //lombok
+       L.polygon([
+    [-9, 115.80],
+    [-9, 116.75],
+    [-8, 116.75],
+    [-8, 115.80],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Lombok<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sumbawa
+       L.polygon([
+    [-9.15, 116.75],
+    [-9.15, 118.40],
+    [-8, 118.40],
+    [-8, 116.75],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sumbawa<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //komodo
+       L.polygon([
+    [-9.15, 118.40],
+    [-9.15, 120],
+    [-8, 120],
+    [-8, 118.40],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Komodo<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ruteng
+       L.polygon([
+    [-9.15, 120],
+    [-9.15, 121.45],
+    [-8, 121.45],
+    [-8, 120],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ruteng<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ende
+       L.polygon([
+    [-9.15, 121.45],
+    [-9.15, 123],
+    [-8, 123],
+    [-8, 121.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ende<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //lobmlen
+       L.polygon([
+    [-9.15, 123],
+    [-9.15, 124.30],
+    [-8, 124.30],
+    [-8, 123],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Lomblen<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //wetar barat
+       L.polygon([
+    [-8.50, 124.30],
+    [-8.50, 126],
+    [-7.65, 126],
+    [-7.65, 124.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Wetar Barat<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //wetar timur
+       L.polygon([
+    [-8.15, 126],
+    [-8.15, 127],
+    [-7.15, 127],
+    [-7.15, 126],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Wetar Timur<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //dili
+       L.polygon([
+    [-9.30, 125],
+    [-9.30, 126],
+    [-8.25, 126],
+    [-8.25, 125],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Dili<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //baucau
+       L.polygon([
+    [-9.15, 126],
+    [-9.15, 127.37],
+    [-8.15, 127.37],
+    [-8.15, 126],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Baucau<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //WAIKA BUBAK & WAINGAPU
+      L.polygon([
+    [-10.35, 118.90],
+    [-10.35, 120.90],
+    [-9.15, 120.90],
+    [-9.15, 118.90],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Waika Bubak & Waingapu<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kupang
+      L.polygon([
+    [-11, 121.30],
+    [-11, 124],
+    [-9.15, 124],
+    [-9.15, 121.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kupang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //atmabua
+      L.polygon([
+    [-10.30, 124],
+    [-10.30, 125.15],
+    [-8.45, 125.15],
+    [-8.45, 124],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Atmabua<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //maluku
+      //morotai
+      L.polygon([
+    [1, 127.20],
+    [1, 128.80],
+    [2.75, 128.80],
+    [2.75, 127.20],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Morotai<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ternate
+      L.polygon([
+    [0, 127],
+    [0, 129],
+    [1, 129],
+    [1, 127],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ternate<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bacan
+      L.polygon([
+    [-1, 127],
+    [-1, 128.45],
+    [0, 128.45],
+    [0, 127],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Baca<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //banggai
+      L.polygon([
+    [-2.15, 123],
+    [-2.15, 125],
+    [-1, 125],
+    [-1, 123],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Banggai<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sanana
+      L.polygon([
+    [-2.60, 125],
+    [-2.60, 126.60],
+    [-1.30, 126.60],
+    [-1.30, 125],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sanana<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //obi
+      L.polygon([
+    [-2, 127],
+    [-2, 128.30],
+    [-1, 128.30],
+    [-1, 127],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Obi<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //buru
+      L.polygon([
+    [-4, 125.90],
+    [-4, 127.30],
+    [-3, 127.30],
+    [-3, 125.90],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Buru<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ambon
+      L.polygon([
+    [-3.85, 127.30],
+    [-3.85, 128.45],
+    [-2.80, 128.45],
+    [-2.80, 127.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ambon<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //masohi
+      L.polygon([
+    [-3.75, 128.45],
+    [-3.75, 130],
+    [-2.70, 130],
+    [-2.70, 128.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ambon<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bula-watubela
+      L.polygon([
+    [-4.90, 130],
+    [-4.90, 131.90],
+    [-2.70, 131.90],
+    [-2.70, 130],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bula - Watubela<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kai tayandu
+      L.polygon([
+    [-6.15, 131.75],
+    [-6.15, 133.25],
+    [-5, 133.25],
+    [-5, 131.75],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kai Tayandu<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //aru
+      L.polygon([
+    [-7, 134],
+    [-7, 135],
+    [-5.15, 135],
+    [-5.15, 134],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Aru<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //moa-damar
+      L.polygon([
+    [-8.45, 127.6],
+    [-8.45, 128.36],
+    [-7.19, 128.36],
+    [-7.19, 127.6],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Moa - Damar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //babar
+      L.polygon([
+    [-8.20, 129],
+    [-8.20, 130.30],
+    [-7.30, 130.30],
+    [-7.30, 129],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Babar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tanimbar
+      L.polygon([
+    [-8.40, 130.30],
+    [-8.40, 132.05],
+    [-6.55, 132.05],
+    [-6.55, 130.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //irianjaya
+      //waigeo
+      L.polygon([
+    [-0.60, 129.50],
+    [-0.60, 131.50],
+    [0.27, 131.50],
+    [0.27, 129.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //mar
+      L.polygon([
+    [-1, 132],
+    [-1, 133.30],
+    [0, 133.30],
+    [0, 132],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //manokwari
+      L.polygon([
+    [-1.15, 133.30],
+    [-1.15, 135],
+    [-0.20, 135],
+    [-0.20, 133.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //biak
+      L.polygon([
+    [-1.40, 135.30],
+    [-1.40, 136.75],
+    [-0.45, 136.75],
+    [-0.45, 135.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sorong
+      L.polygon([
+    [-1.35, 129.35],
+    [-1.35, 132],
+    [-0.30, 132],
+    [-0.30, 129.35],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //taminabuan
+      L.polygon([
+    [-2, 131.30],
+    [-2, 133],
+    [-1, 133],
+    [-1, 131.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ransiki
+      L.polygon([
+    [-2, 133],
+    [-2, 134.30],
+    [-1, 134.30],
+    [-1, 133],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //yapen
+      L.polygon([
+    [-2, 135],
+    [-2, 137.05],
+    [-1.30, 137.05],
+    [-1.30, 135],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //misool
+      L.polygon([
+    [-2.30, 129.30],
+    [-2.30, 131],
+    [-1.30, 131],
+    [-1.30, 129.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //fak-fak
+      L.polygon([
+    [-3, 131.80],
+    [-3, 133],
+    [-2, 133],
+    [-2, 131.80],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //steenkool
+      L.polygon([
+    [-3, 133],
+    [-3, 135],
+    [-2, 135],
+    [-2, 133],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //waren
+      L.polygon([
+    [-3, 135],
+    [-3, 136.30],
+    [-2, 136.30],
+    [-2, 135],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sawai
+      L.polygon([
+    [-2, 137],
+    [-2, 138],
+    [-1, 138],
+    [-1, 137],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //gunug doom
+      L.polygon([
+    [-3, 136.30],
+    [-3, 138],
+    [-2, 138],
+    [-2, 136.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sarmi bufareh
+      L.polygon([
+    [-3, 138],
+    [-3, 139.30],
+    [-1.30, 139.30],
+    [-1.30, 138],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jayapura
+      L.polygon([
+    [-3, 139.30],
+    [-3, 141],
+    [-2, 141],
+    [-2, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pulau karas
+      L.polygon([
+    [-4.08, 132],
+    [-4.08, 133.30],
+    [-3, 133.30],
+    [-3, 132],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kaimana 
+      L.polygon([
+    [-4, 133.30],
+    [-4, 135],
+    [-3, 135],
+    [-3, 133.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //enarotali 
+      L.polygon([
+    [-4, 135],
+    [-4, 136.30],
+    [-3, 136.30],
+    [-3, 135],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //beoga 
+      L.polygon([
+    [-4, 136.30],
+    [-4, 138],
+    [-3, 138],
+    [-3, 136.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //rotanburg 
+      L.polygon([
+    [-4, 138],
+    [-4, 139.30],
+    [-3, 139.30],
+    [-3, 138],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //taritatu 
+      L.polygon([
+    [-4, 139.30],
+    [-4, 141],
+    [-3, 141],
+    [-3, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //omba 
+      L.polygon([
+    [-5, 133.30],
+    [-5, 135],
+    [-4, 135],
+    [-4, 133.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //waghete 
+      L.polygon([
+    [-5, 135],
+    [-5, 136.30],
+    [-4, 136.30],
+    [-4, 135],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //timika 
+      L.polygon([
+    [-5, 136.30],
+    [-5, 138],
+    [-4, 138],
+    [-4, 136.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //wamena 
+      L.polygon([
+    [-5, 138],
+    [-5, 139.30],
+    [-4, 139.30],
+    [-4, 138],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jayawijaya 
+      L.polygon([
+    [-5, 139.30],
+    [-5, 141],
+    [-4, 141],
+    [-4, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //birufu & yapero 
+      L.polygon([
+    [-6, 137.08],
+    [-6, 139.30],
+    [-5, 139.30],
+    [-5, 137.08],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //oksibil
+      L.polygon([
+    [-6, 139.30],
+    [-6, 141],
+    [-5, 141],
+    [-5, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sarabih
+      L.polygon([
+    [-7, 138],
+    [-7, 139.30],
+    [-6, 139.30],
+    [-6, 138],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tanah merah
+      L.polygon([
+    [-7, 139.30],
+    [-7, 141],
+    [-6, 141],
+    [-6, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //mapi
+      L.polygon([
+    [-8, 137.49],
+    [-8, 139.30],
+    [-7, 139.30],
+    [-7, 137.49],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //muting
+      L.polygon([
+    [-8, 139.30],
+    [-8, 141],
+    [-7, 141],
+    [-7, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tanjung vals & komolom
+      L.polygon([
+    [-8.45, 137.30],
+    [-8.45, 139.30],
+    [-8, 139.30],
+    [-8, 137.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //merauke
+      L.polygon([
+    [-9.07, 139.30],
+    [-9.07, 141],
+    [-8, 141],
+    [-8, 139.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanimbar<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kalimantan
+        //malinau
+      L.polygon([
+    [3, 115.30],
+    [3, 117],
+    [4, 117],
+    [4, 115.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Malinau<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tarakan & sebatik
+      L.polygon([
+    [3, 117],
+    [3, 118.30],
+    [4, 118.30],
+    [4, 117],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tarakan & Sebatik<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sawah
+      L.polygon([
+    [2, 114],
+    [2, 115.30],
+    [3, 115.30],
+    [3, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sawah<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //longbia
+      L.polygon([
+    [2, 115.30],
+    [2, 117],
+    [3, 117],
+    [3, 115.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Longbia<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tanjung rejeb
+      L.polygon([
+    [2, 117],
+    [2, 118.30],
+    [3, 118.30],
+    [3, 117],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanjung Rejeb<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sambas
+      L.polygon([
+    [1, 108.45],
+    [1, 110.20],
+    [2, 110.20],
+    [2, 108.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sambas<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //nangaobat
+      L.polygon([
+    [1, 111],
+    [1, 112.30],
+    [2, 112.30],
+    [2, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Nangaobat<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pegunungan kapuas
+      L.polygon([
+    [1, 112.30],
+    [1, 114],
+    [2, 114],
+    [2, 112.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pegunungan Kapuas<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //long nawan 
+      L.polygon([
+    [1, 114],
+    [1, 115.30],
+    [2, 115.30],
+    [2, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Longnawan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tanjung mangkaliat  
+      L.polygon([
+    [0.45, 118.30],
+    [0.45, 120],
+    [1.45, 120],
+    [1.45, 118.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tanjung Mangkaliat<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //singkawang   
+      L.polygon([
+    [0, 108],
+    [0, 109.30],
+    [1, 109.30],
+    [1, 108],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Singkawang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sanggau   
+      L.polygon([
+    [0, 109.30],
+    [0, 111],
+    [1, 111],
+    [1, 109.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sanggau<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sintang   
+      L.polygon([
+    [0, 111],
+    [0, 112.30],
+    [1, 112.30],
+    [1, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sintang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //putussibau   
+      L.polygon([
+    [0, 112.30],
+    [0, 114],
+    [1, 114],
+    [1, 112.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Putussibau<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //long pangahai   
+      L.polygon([
+    [0, 114],
+    [0, 115.30],
+    [1, 115.30],
+    [1, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Long Pangahai<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sangatta    
+      L.polygon([
+    [0, 117],
+    [0, 118.30],
+    [1, 118.30],
+    [1, 117],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sangatta<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pontianak    
+      L.polygon([
+    [-1, 109],
+    [-1, 111],
+    [0, 111],
+    [0, 109],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pontianak<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //nangapinoh    
+      L.polygon([
+    [-1, 111],
+    [-1, 112.30],
+    [0, 112.30],
+    [0, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Nangapinoh<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tumbanghiram    
+      L.polygon([
+    [-1, 112.30],
+    [-1, 114],
+    [0, 114],
+    [0, 112.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tumbanghiram<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //muara tewe    
+      L.polygon([
+    [-1, 114],
+    [-1, 115.30],
+    [0, 115.30],
+    [0, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Muara Tewe<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //longiram    
+      L.polygon([
+    [-1, 115.30],
+    [-1, 116.30],
+    [0, 116.30],
+    [0, 115.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Longiram<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //samarinda    
+      L.polygon([
+    [-1, 116.30],
+    [-1, 118],
+    [0, 118],
+    [0, 116.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Samarinda<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tumbang manjul    
+      L.polygon([
+    [-2, 111],
+    [-2, 112.30],
+    [-1, 112.30],
+    [-1, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tumbang Majul<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tewah     
+      L.polygon([
+    [-2, 112.30],
+    [-2, 114],
+    [-1, 114],
+    [-1, 112.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tewah<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //buntok     
+      L.polygon([
+    [-2, 114],
+    [-2, 115.30],
+    [-1, 115.30],
+    [-1, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Buntok<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //balikpapan     
+      L.polygon([
+    [-2, 115.30],
+    [-2, 117.10],
+    [-1, 117.10],
+    [-1, 115.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Balikpapan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pangkalan buun     
+      L.polygon([
+    [-3, 111],
+    [-3, 112.30],
+    [-2, 112.30],
+    [-2, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pangkalan Buun<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //palangkaraya     
+      L.polygon([
+    [-3, 112.30],
+    [-3, 114],
+    [-2, 114],
+    [-2, 112.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Palangkaraya<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sampanahan     
+      L.polygon([
+    [-3, 115.30],
+    [-3, 116.45],
+    [-2, 116.45],
+    [-2, 115.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sampanahan<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //muaradua     
+      L.polygon([
+    [-4, 111],
+    [-4, 112.30],
+    [-3, 112.30],
+    [-3, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Muaradua<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kuala pembuang     
+      L.polygon([
+    [-4, 112.30],
+    [-4, 114],
+    [-3, 114],
+    [-3, 112.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kuala Pembuang<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kotabaru     
+      L.polygon([
+    [-4.15, 115.30],
+    [-4.15, 116.30],
+    [-3, 116.30],
+    [-3, 115.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kotabaru<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tepian balai     
+      L.polygon([
+    [-5, 115],
+    [-5, 116.30],
+    [-4, 116.30],
+    [-4, 115],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tepian Balai<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //butun & ranai     
+      L.polygon([
+    [3.30, 107.70],
+    [3.30, 108.60],
+    [4.50, 108.60],
+    [4.50, 107.70],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Butun & Ranai<br>Scale: 1:250.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jawa
+      //anyer
+      L.polygon([
+    [-6.50, 105.50],
+    [-6.50, 106],
+    [-5.90, 106],
+    [-5.90, 105.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Anyer<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //cikarang
+      L.polygon([
+    [-7.05, 105.40],
+    [-7.05, 106],
+    [-6.50, 106],
+    [-6.50, 105.40],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Cikarang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //serang
+      L.polygon([
+    [-6.50, 106],
+    [-6.50, 106.30],
+    [-5.80, 106.30],
+    [-5.80, 106],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Serang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //leuwidamar
+      L.polygon([
+    [-7.05, 106],
+    [-7.05, 106.50],
+    [-6.50, 106.50],
+    [-6.50, 106],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Leuwidamar<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jakarta
+      L.polygon([
+    [-5.30, 106.30],
+    [-5.30, 107],
+    [-6.50, 107],
+    [-6.50, 106.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Jakarta<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bogor
+      L.polygon([
+    [-7.05, 106.50],
+    [-7.05, 107],
+    [-6.50, 107],
+    [-6.50, 106.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bogor<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jampang & balekambang
+      L.polygon([
+    [-7.50, 106.30],
+    [-7.50, 107],
+    [-7.05, 107],
+    [-7.05, 106.30],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Jampang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //karawang
+      L.polygon([
+    [-6.50, 107],
+    [-6.50, 107.45],
+    [-5.80, 107.45],
+    [-5.80, 107],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Karawang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //cianjuur
+      L.polygon([
+    [-7.05, 107],
+    [-7.05, 107.45],
+    [-6.50, 107.45],
+    [-6.50, 107],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Cianjur<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //sindang barang & bandarwaru
+      L.polygon([
+    [-7.05, 107],
+    [-7.05, 107.45],
+    [-7.60, 107.45],
+    [-7.60, 107],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Sindang Barang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pamanukan
+      L.polygon([
+    [-6.50, 107.45],
+    [-6.50, 108],
+    [-6, 108],
+    [-6, 107.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pamanukan<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bandung
+      L.polygon([
+    [-7.05, 107.45],
+    [-7.05, 108],
+    [-6.50, 108],
+    [-6.50, 107.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bandung<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //garut-pameungpeuk
+      L.polygon([
+    [-7.05, 107.45],
+    [-7.05, 108],
+    [-7.80, 108],
+    [-7.80, 107.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Garut<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //indramayu
+      L.polygon([
+    [-6.50, 108],
+    [-6.50, 108.45],
+    [-6, 108.45],
+    [-6, 108],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Indramayu<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //arjawinangun
+      L.polygon([
+    [-7.05, 108],
+    [-7.05, 108.45],
+    [-6.50, 108.45],
+    [-6.50, 108],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Arjawinangun<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tasikmalaya
+      L.polygon([
+    [-7.05, 108],
+    [-7.05, 108.45],
+    [-7.60, 108.45],
+    [-7.60, 108],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tasikmalaya<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //karangnunggal
+      L.polygon([
+    [-7.60, 108],
+    [-7.60, 108.45],
+    [-7.90, 108.45],
+    [-7.90, 108],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Karangnunggal<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //cirebon
+      L.polygon([
+    [-7.05, 108.45],
+    [-7.05, 109],
+    [-6.40, 109],
+    [-6.40, 108.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Cirebon<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //majenang
+      L.polygon([
+    [-7.05, 108.45],
+    [-7.05, 109],
+    [-7.60, 109],
+    [-7.60, 108.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Majenang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pangandaran
+      L.polygon([
+    [-7.60, 108.45],
+    [-7.60, 109],
+    [-7.90, 109],
+    [-7.90, 108.45],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pangandaran<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tegal-puwokerto
+      L.polygon([
+    [-7.60, 109],
+    [-7.60, 109.55],
+    [-6.75, 109.55],
+    [-6.75, 109],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tegal<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //banyumas
+      L.polygon([
+    [-7.60, 109],
+    [-7.60, 109.55],
+    [-7.90, 109.55],
+    [-7.90, 109],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Banyumas<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pekalongan-banjarnegara
+      L.polygon([
+    [-7.60, 109.55],
+    [-7.60, 110],
+    [-6.75, 110],
+    [-6.75, 109.55],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pekalongan<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kebumen
+      L.polygon([
+    [-7.60, 109.55],
+    [-7.60, 110],
+    [-7.90, 110],
+    [-7.90, 109.55],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kebumen<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //magelang-semarang
+      L.polygon([
+    [-7.60, 110],
+    [-7.60, 110.50],
+    [-6.80, 110.50],
+    [-6.80, 110],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Magelang - Semarang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //yogya
+      L.polygon([
+    [-7.60, 110],
+    [-7.60, 110.50],
+    [-8.20, 110.50],
+    [-8.20, 110],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Yogyakarta<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kudus
+      L.polygon([
+    [-7.05, 110.50],
+    [-7.05, 111],
+    [-6.30, 111],
+    [-6.30, 110.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kudus<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //salatiga
+      L.polygon([
+    [-7.05, 110.50],
+    [-7.05, 111],
+    [-7.60, 111],
+    [-7.60, 110.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Salatiga<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //surakarta-girintoro
+      L.polygon([
+    [-7.60, 110.50],
+    [-7.60, 111],
+    [-8.30, 111],
+    [-8.30, 110.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Surakarta<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //rembang
+      L.polygon([
+    [-7.05, 111],
+    [-7.05, 111.50],
+    [-6.30, 111.50],
+    [-6.30, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Rembang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ngawi
+      L.polygon([
+    [-7.05, 111],
+    [-7.05, 111.50],
+    [-7.60, 111.50],
+    [-7.60, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ngawi<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //ponorogo
+      L.polygon([
+    [-8, 111],
+    [-8, 111.50],
+    [-7.60, 111.50],
+    [-7.60, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Ponorogo<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //pacitan
+      L.polygon([
+    [-8.40, 111],
+    [-8.40, 111.50],
+    [-8, 111.50],
+    [-8, 111],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Pacitan<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jatirogo
+      L.polygon([
+    [-7.05, 111.50],
+    [-7.05, 112],
+    [-6.60, 112],
+    [-6.60, 111.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Jatirogo<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //bojonegoro
+      L.polygon([
+    [-7.05, 111.50],
+    [-7.05, 112],
+    [-7.60, 112],
+    [-7.60, 111.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Bojonegoro<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //madiun
+      L.polygon([
+    [-8, 111.50],
+    [-8, 112],
+    [-7.60, 112],
+    [-7.60, 111.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Madiun<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tulungagung
+      L.polygon([
+    [-8.50, 111.50],
+    [-8.50, 112],
+    [-8, 112],
+    [-8, 111.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tulungagung<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tuban
+      L.polygon([
+    [-7.05, 112],
+    [-7.05, 112.50],
+    [-6.60, 112.50],
+    [-6.60, 112],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tuban<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //mojokerto
+      L.polygon([
+    [-7.05, 112],
+    [-7.05, 112.50],
+    [-7.60, 112.50],
+    [-7.60, 112],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Mojokerto<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //kediri
+      L.polygon([
+    [-8, 112],
+    [-8, 112.50],
+    [-7.60, 112.50],
+    [-7.60, 112],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Kediri<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //blitar
+      L.polygon([
+    [-8.50, 112],
+    [-8.50, 112.50],
+    [-8, 112.50],
+    [-8, 112],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Blitar<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //surabaya - sapulu
+      L.polygon([
+    [-6.60, 112.50],
+    [-6.60, 113],
+    [-7.60, 113],
+    [-7.60, 112.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Surabaya<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //malang
+      L.polygon([
+    [-8, 112.50],
+    [-8, 113],
+    [-7.60, 113],
+    [-7.60, 112.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Malang<br>Scale: 1:100.000<br><br>Link Download: <a href="file:///E:/Documents/webgis/images/malang.tif">With Georefrencing</a> | <a href="file:///E:/Documents/webgis/images/popup/malang.jpg">Without Georefrencing</a><br><br><img src="images/popup/malang.jpg" width=300x height=200px>', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //turen
+      L.polygon([
+    [-8.50, 112.50],
+    [-8.50, 113],
+    [-8, 113],
+    [-8, 112.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Turen<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //tanjung bumi & pamekasan
+      L.polygon([
+    [-7.40, 113],
+    [-7.40, 113.50],
+    [-6.80, 113.50],
+    [-6.80, 113],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Tnajung Bumi & Pamekasan<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //probolinggo
+      L.polygon([
+    [-8, 113],
+    [-8, 113.50],
+    [-7.60, 113.50],
+    [-7.60, 113],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Probolinggo<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //lumajang
+      L.polygon([
+    [-8.60, 113],
+    [-8.60, 113.50],
+    [-8, 113.50],
+    [-8, 113],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Lumajang<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //waru & sumenep
+      L.polygon([
+    [-7.40, 113.50],
+    [-7.40, 114.25],
+    [-6.80, 114.25],
+    [-6.80, 113.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Waru & Sumenep<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //besuki
+      L.polygon([
+    [-8, 113.50],
+    [-8, 114],
+    [-7.60, 114],
+    [-7.60, 113.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Besuki<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //jember
+      L.polygon([
+    [-8.65, 113.50],
+    [-8.65, 114],
+    [-8, 114],
+    [-8, 113.50],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Jember<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //situbondo
+      L.polygon([
+    [-8, 114],
+    [-8, 114.50],
+    [-7.50, 114.50],
+    [-7.50, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Situbondo<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //banyuwangi
+      L.polygon([
+    [-8.50, 114],
+    [-8.50, 114.50],
+    [-8, 114.50],
+    [-8, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Banywangi<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+      //blambangan
+      L.polygon([
+    [-8.90, 114],
+    [-8.90, 114.65],
+    [-8.50, 114.65],
+    [-8.50, 114],
+    ]).setStyle({color: "blue"}).addTo(map).bindPopup('Map id: Blambangan<br>Scale: 1:100.000<br><br>Link Download: <a href="https://www.example.com" target="_blank">With Georefrencing</a> | <a href="https://www.example.com" target="_blank">Without Georefrencing</a><br><br><img src="http://via.placeholder.com/350x150">', {maxWidth : "auto"})
+      .on('mouseover', function() {
+        this.setStyle({ color: 'red'});
+      })
+      .on('mouseout', function() {
+        this.setStyle({ color: 'blue'});
+      });
+
+
+    //   for (var i = 0; i < 1; i += 1) {
+    // // marker = L.marker([-7.959769, 112.624614]).addTo(map);
+    // popupContent = document.createElement("img");
+    // popupContent.onload = function () {
+    //   // marker.openPopup();
+    // };
+    // popupContent.src = "http://via.placeholder.com/350x150";
+    // //popupContent = '<img src="http://c4.staticflickr.com/1/691/21131215939_49601d06ef_b.jpg" />';
+    // marker.bindPopup(popupContent, {maxWidth: "auto"});
+        </script>
+    </body>
+</html>
